@@ -1,0 +1,27 @@
+ALEX MERCER
+Email: alex.mercer@example.com | Phone: +1 (555) 019-2834 | Location: San Francisco, CA
+LinkedIn: linkedin.com/in/alex-mercer | GitHub: github.com/alex-mercer
+
+SUMMARY
+Results-oriented Senior Full-Stack Software Engineer with 4+ years of experience designing, architecting, and deploying resilient distributed backends and high-performance cross-platform client applications. Proven track record optimizing high-throughput microservices, reducing p99 latency by 45%, and leading engineering cross-functional teams.
+
+CORE TECHNICAL SKILLS
+- Programming Languages: Python, Dart, TypeScript, SQL, Go
+- Frameworks & Libraries: FastAPI, Flutter, React, Pydantic, SQLAlchemy, Celery
+- Databases & Caching: PostgreSQL, Redis, MongoDB, DynamoDB
+- Cloud & Infrastructure: Docker, Kubernetes, AWS (ECS, S3, RDS), GitHub Actions, Terraform
+- Architecture: Microservices, Event-Driven Architecture, RESTful APIs, System Design, Concurrency
+
+PROFESSIONAL EXPERIENCE
+Senior Full-Stack Engineer | CloudScale Systems (2023 - Present)
+- Architected and built high-concurrency event ingestion pipelines using FastAPI and Redis, handling 50k+ requests/sec with 99.99% uptime.
+- Led the migration of internal monitoring tools to Flutter Desktop & Web, unifying frontend development across macOS and Windows.
+- Implemented automated database connection pooling and query optimization, decreasing RDS load by 35%.
+
+Software Engineer | NexaTech Innovations (2021 - 2023)
+- Developed RESTful API services supporting customer billing and analytics using Python and PostgreSQL.
+- Mentored junior engineers, established code review rubrics, and maintained 90%+ unit test coverage.
+- Integrated automated CI/CD pipelines deploying containerized workloads to Kubernetes clusters.
+
+EDUCATION
+B.S. in Computer Science | University of California, Berkeley (2017 - 2021)

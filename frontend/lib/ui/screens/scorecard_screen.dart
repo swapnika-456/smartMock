@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import '../../core/theme.dart';
+import '../../data/models/evaluation_model.dart';
 import '../view_models/interview_view_model.dart';
 
 class ScorecardScreen extends StatelessWidget {
@@ -11,6 +13,39 @@ class ScorecardScreen extends StatelessWidget {
     if (score >= 70) return AppTheme.accent;
     if (score >= 55) return AppTheme.warning;
     return AppTheme.danger;
+  }
+
+  String _generateMarkdownReport(EvaluationReport report) {
+    final sb = StringBuffer();
+    sb.writeln('# 🎯 smartMock Evaluation Scorecard');
+    sb.writeln('**Candidate:** ${report.candidateName}');
+    sb.writeln('**Target Role:** ${report.targetRole}');
+    sb.writeln('**Overall Score:** ${report.overallScore}/100');
+    sb.writeln('**Hiring Recommendation:** ${report.recommendation.toUpperCase()}\n');
+    sb.writeln('## Executive Summary\n${report.executiveSummary}\n');
+    sb.writeln('## Competency Pillars');
+    sb.writeln('- Technical Depth: ${report.technicalScore}%');
+    sb.writeln('- Problem Solving: ${report.problemSolvingScore}%');
+    sb.writeln('- Communication: ${report.communicationScore}%');
+    sb.writeln('- Behavioral Fit: ${report.behavioralScore}%\n');
+    sb.writeln('## Key Strengths');
+    for (final s in report.strengths) {
+      sb.writeln('- $s');
+    }
+    sb.writeln('\n## Areas to Refine');
+    for (final w in report.weaknesses) {
+      sb.writeln('- $w');
+    }
+    sb.writeln('\n## Topic Assessment');
+    for (final t in report.topicScores) {
+      sb.writeln('### ${t.topic} (${t.score}/100)');
+      sb.writeln('${t.feedback}\n');
+    }
+    sb.writeln('## Personalized Action Plan');
+    for (var i = 0; i < report.actionPlan.length; i++) {
+      sb.writeln('${i + 1}. ${report.actionPlan[i]}');
+    }
+    return sb.toString();
   }
 
   @override
@@ -46,6 +81,26 @@ class ScorecardScreen extends StatelessWidget {
         elevation: 0,
         title: const Text('Candidate Evaluation & Scorecard', style: TextStyle(fontWeight: FontWeight.bold)),
         actions: [
+          OutlinedButton.icon(
+            onPressed: () {
+              final md = _generateMarkdownReport(report);
+              Clipboard.setData(ClipboardData(text: md));
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Scorecard report copied to clipboard!'),
+                  backgroundColor: AppTheme.success,
+                  duration: Duration(seconds: 2),
+                ),
+              );
+            },
+            icon: const Icon(Icons.copy_rounded, size: 16, color: AppTheme.accent),
+            label: const Text('Copy Report', style: TextStyle(color: AppTheme.accent)),
+            style: OutlinedButton.styleFrom(
+              side: const BorderSide(color: AppTheme.accent),
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+            ),
+          ),
+          const SizedBox(width: 10),
           ElevatedButton.icon(
             onPressed: vm.resetToHome,
             icon: const Icon(Icons.refresh_rounded, size: 18),
